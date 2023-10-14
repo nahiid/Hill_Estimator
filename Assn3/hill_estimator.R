@@ -84,20 +84,50 @@ AR_data_0.95 = AR_data_0.95[2:1001]
 AR_data_0.5 = AR_data_0.5[2:1001]
 AR_data_0.15 = AR_data_0.15[2:1001]
 
-### Scatter plot for each model
-plot(AR_data_0.95, xlab = "t", ylab = "X_t")
-plot(AR_data_0.5, xlab = "t", ylab = "X_t")
-plot(AR_data_0.15, xlab = "t", ylab = "X_t")
+### Plot each model
 
+##### phi 0.95
+# Set a threshold and create a scatter plot with extreme values highlighted
+threshold <- 5
+plot(AR_data_0.95, xlab = "t", ylab = "X_t", main = "AR(1) phi 0.95")
+points(which(AR_data_0.95 > threshold), 
+       AR_data_0.95[AR_data_0.95 > threshold], col = "red", pch = 19)
+
+# Density Plot 
+density_plot <- density(AR_data_0.95)
+plot(density_plot, main = "Density Plot for AR(1) phi 0.95")
+
+##### phi 0.5
+plot(AR_data_0.5, xlab = "t", ylab = "X_t", main = "AR(1) phi 0.5")
+
+# Density Plot
+density_plot <- density(AR_data_0.5)
+plot(density(AR_data_0.5), main = "Density Plot - Phi 0.5", xlab = "")
+ 
+
+##### phi 0.15
+plot(AR_data_0.15, xlab = "t", ylab = "X_t", main = "AR(1) phi 0.15")
+
+# Density Plot
+density_plot <- density(AR_data_0.15)
+plot(density(AR_data_0.15), main = "Density Plot - Phi 0.15", xlab = "")
+ 
 #AR_data_0.5 is fairly similar to the normal
 
 ### Hill plot for each model
 hill(AR_data_0.95)
+# Add line to hill plot
+abline(h = c(7, 5, 3, 1), col = "pink")
+
 hill(AR_data_0.5)
 hill(AR_data_0.15)
 
 
 detach("package:evir")
+
+
+
+
 
 
 
